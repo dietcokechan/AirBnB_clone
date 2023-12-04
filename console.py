@@ -5,3 +5,6 @@ import cmd
 
 class AirbnbConsole(cmd.Cmd):
     prompt = "(Airbnb) "
+
+if __name__ == '__main__':
+    AirbnbConsole().cmdloop()
