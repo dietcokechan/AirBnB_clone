@@ -16,11 +16,11 @@ class BaseModel:
         """string representation"""
         return "[{}] ({}) {}".format(
             type(self).__name__, self.id, self.__dict__)
-    
+
     def __repr__(self):
         """returns string"""
         return self.__str__()
-    
+
     def save(self):
         """save class"""
         self.updated_at = datetime.now()
