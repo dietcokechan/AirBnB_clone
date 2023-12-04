@@ -3,8 +3,18 @@
 import cmd
 
 
-class AirbnbConsole(cmd.Cmd):
-    prompt = "(Airbnb) "
+class HBNBCommand(cmd.Cmd):
+    prompt = "(hbnb) "
+
+    def quitcmd(self, line):
+        """exit program"""
+        return True
+    
+    cmdEOF = quitcmd
+
+    def emptyline(self):
+        """do nothing"""
+        pass
 
 if __name__ == '__main__':
-    AirbnbConsole().cmdloop()
+    HBNBCommand().cmdloop()
