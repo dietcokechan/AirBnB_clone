@@ -10,7 +10,7 @@ from models.place import Place
 from models.review import Review
 
 
-class FileStorage(BaseModel):
+class FileStorage:
     """definition"""
     __file_path = "file.json"
     __objects = {}
