@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """init"""
-from models.engine.file_storage import FileStorage
+from models.engine.file_storage import FileStorage as FS
 
 
-storage = FileStorage()
+storage = FS()
 storage.reload()
