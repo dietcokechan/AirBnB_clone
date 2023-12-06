@@ -9,12 +9,13 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """exit program"""
         return True
-    
+
     do_EOF = do_quit
 
     def emptyline(self):
         """do nothing"""
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
