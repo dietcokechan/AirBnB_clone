@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """entry point of the command line interpreter"""
 import cmd
+import shlex
 from shlex import split
 from models import storage
 
@@ -23,12 +24,19 @@ class HBNBCommand(cmd.Cmd):
 
     def do_count(self, line):
         """get count of instances of given class"""
-        strings = split(line)
-        count = 0
-        for obj in storage.all().values():
-            if strings[0] == obj.__class__.__name__:
-                count += 1
-        print(count)
+        strings = list(shlex.shlex(line, posix=True))
+        if strings[0] not in HBNBCommand.classes:
+            print("*** Unknown syntax: {}".format(line))
+            return
+        if strings[2] == "all":
+            self.do_all(strings[0])
+        elif strings[2] == "count":
+            count = 0
+            for obj in storage.all().values():
+                if strings[0] == type(obj).__name__:
+                    count += 1
+            print(count)
+            return
 
     def do_create(self, line):
         """creates an object"""
