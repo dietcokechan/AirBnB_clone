@@ -13,8 +13,9 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+    """definition"""
     prompt = "(hbnb) "
-    classes = {"BaseModel", "User", "State", "City",
+    __classes = {"BaseModel", "User", "State", "City",
                "Amenity", "Place", "Review"}
 
     def do_quit(self, line):
@@ -32,12 +33,13 @@ class HBNBCommand(cmd.Cmd):
         if not len(line):
             print("** class name missing **")
             return
-        if line not in HBNBCommand.classes:
+        if line not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return
         obj = eval(line)()
         print(obj.id)
         obj.save()
+        storage.save()
 
     def do_show(self, line):
         """shows an object"""
@@ -45,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         strings = split(line)
-        if strings[0] not in HBNBCommand.classes:
+        if strings[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return
         if len(strings) == 1:
@@ -63,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         strings = split(line)
-        if strings[0] not in HBNBCommand.classes:
+        if strings[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return
         if len(strings) == 1:
@@ -82,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
             print([obj for obj in storage.all().values()])
             return
         strings = split(line)
-        if strings[0] not in HBNBCommand.classes:
+        if strings[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return
         print([obj for obj in storage.all().values()
@@ -97,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
         for str in strings:
             if str.startswith('"') and str.endswith('"'):
                 str = str[1:-1]
-        if strings[0] not in HBNBCommand.classes:
+        if strings[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return
         if len(strings) == 1:
@@ -117,6 +119,7 @@ class HBNBCommand(cmd.Cmd):
             setattr(storage.all()[keyVal], strings[2], eval(strings[3]))
         except Exception:
             setattr(storage.all()[keyVal], strings[2], strings[3])
+        storage.save()
 
 
 if __name__ == '__main__':
