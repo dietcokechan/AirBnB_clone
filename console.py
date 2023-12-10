@@ -21,6 +21,15 @@ class HBNBCommand(cmd.Cmd):
         """do nothing"""
         pass
 
+    def do_count(self, line):
+        """get count of instances of given class"""
+        strings = split(line)
+        count = 0
+        for obj in storage.all().values():
+            if strings[0] == obj.__class__.__name__:
+                count += 1
+        print(count)
+
     def do_create(self, line):
         """creates an object"""
         if not len(line):
