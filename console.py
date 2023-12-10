@@ -9,7 +9,7 @@ class HBNBCommand(cmd.Cmd):
     """definition"""
     prompt = "(hbnb) "
     __classes = {"BaseModel", "User", "State", "City",
-               "Amenity", "Place", "Review"}
+                 "Amenity", "Place", "Review"}
 
     def do_quit(self, line):
         """exit program"""
