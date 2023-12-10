@@ -142,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
         """defaults"""
         subargs = self.strip_line(line)
         strings = list(shlex.shlex(line, posix=True))
-        if strings[0] not in HBNBCommand.classes:
+        if strings[0] not in HBNBCommand.__classes:
             print("*** Unknown syntax: {}".format(line))
             return
         if strings[2] == "all":
